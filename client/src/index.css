@@ -1,37 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-display: 'Montserrat', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
 
-  /* Premium Blue Palette */
-  --background: 210 40% 98%;
+  /* Luxury Plumbing Palette - Deep Navy & Gold */
+  --background: 220 33% 98%;
   --foreground: 222 47% 11%;
   
-  --primary: 215 100% 45%;     /* Deep Professional Blue */
-  --primary-foreground: 0 0% 100%;
+  --primary: 221 45% 18%;     /* Deep Navy */
+  --primary-foreground: 210 40% 98%;
   
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222 47% 11.2%;
+  --secondary: 45 45% 55%;    /* Elegant Gold */
+  --secondary-foreground: 222 47% 11%;
   
   --muted: 210 40% 96.1%;
   --muted-foreground: 215 16% 47%;
   
-  --accent: 199 89% 48%;       /* Water/Aqua Accent */
-  --accent-foreground: 0 0% 100%;
+  --accent: 221 45% 18%;
+  --accent-foreground: 210 40% 98%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 215 100% 45%;
+  --ring: 45 45% 55%;
   
-  --radius: 0.5rem;
+  --radius: 0.25rem; /* Sharper, more premium look */
 }
 
 @layer base {
@@ -42,13 +42,31 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    @apply font-bold tracking-tight text-slate-900;
+    @apply font-bold tracking-tight text-primary;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-lg border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-secondary/70;
+  }
+
+  .shadow-premium {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -56,10 +74,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.5);
-  border-radius: 5px;
+  background: hsl(var(--primary) / 0.2);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary));
+  background: hsl(var(--secondary));
 }
