@@ -14,6 +14,19 @@ export default function Home() {
     window.location.href = `tel:${phoneNumber}`;
   };
 
+  const services = [
+    { icon: Zap, title: "Emergency Plumbing", desc: "Fast 24/7 response for all urgent plumbing issues." },
+    { icon: Droplets, title: "Leak Detection", desc: "Pinpoint accuracy in finding and repairing hidden leaks." },
+    { icon: Wrench, title: "Blocked Drains", desc: "Professional clearing of even the toughest drain blockages." },
+    { icon: Thermometer, title: "Geyser Services", desc: "Expert installation and repairs for all geyser types." }
+  ];
+
+  const reasons = [
+    { icon: Clock, title: "Fast Response Times", desc: "We arrive quickly to minimize water damage and stress." },
+    { icon: ShieldCheck, title: "Experienced & Reliable", desc: "Certified master plumbers with over 15 years of local experience." },
+    { icon: Droplets, title: "Transparent Pricing", desc: "Upfront quotes with no hidden surprises or call-out fees." }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -26,7 +39,6 @@ export default function Home() {
             <span className="text-lg md:text-xl font-extrabold text-slate-900 tracking-tight">Somerset Plumbing</span>
           </div>
           
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
             <a href="#services" className="hover:text-primary transition-colors">Services</a>
             <a href="#why-us" className="hover:text-primary transition-colors">Why Choose Us</a>
@@ -36,7 +48,6 @@ export default function Home() {
             </Button>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button 
             className="md:hidden p-2 text-slate-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -45,7 +56,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Mobile Nav */}
         {isMenuOpen && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
@@ -132,12 +142,7 @@ export default function Home() {
             Whatever your plumbing needs, our team of experts is ready to provide top-tier solutions.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 text-left">
-            {[
-              { icon: Zap, title: "Emergency Plumbing", desc: "Fast 24/7 response for all urgent plumbing issues." },
-              { icon: Droplets, title: "Leak Detection", desc: "Pinpoint accuracy in finding and repairing hidden leaks." },
-              { icon: Wrench, title: "Blocked Drains", desc: "Professional clearing of even the toughest drain blockages." },
-              { icon: Thermometer, title: "Geyser Services", desc: "Expert installation and repairs for all geyser types." }
-            ].map((service, i) => (
+            {services.map((service, i) => (
               <Card key={i} className="rounded-2xl md:rounded-3xl border-0 shadow-sm hover:shadow-xl transition-all duration-300 group">
                 <CardContent className="p-6 md:p-10">
                   <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/5 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:bg-primary transition-colors">
@@ -167,11 +172,7 @@ export default function Home() {
             <div className="space-y-6 md:space-y-8">
               <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight text-center lg:text-left">Why Choose <br className="hidden md:block" /><span className="text-primary">Somerset Plumbing?</span></h2>
               <div className="space-y-4 md:space-y-6">
-                {[
-                  { icon: Clock, title: "Fast Response Times", desc: "We arrive quickly to minimize water damage and stress." },
-                  { icon: ShieldCheck, title: "Experienced & Reliable", desc: "Certified master plumbers with over 15 years of local experience." },
-                  { icon: Droplets, title: "Transparent Pricing", desc: "Upfront quotes with no hidden surprises or call-out fees." }
-                ].map((reason, i) => (
+                {reasons.map((reason, i) => (
                   <div key={i} className="flex gap-4 md:gap-6 p-4 md:p-6 rounded-2xl md:rounded-3xl hover:bg-slate-50 transition-colors">
                     <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary rounded-lg md:rounded-xl flex items-center justify-center shadow-lg shadow-primary/30">
                       <reason.icon className="text-white w-5 h-5 md:w-6 md:h-6" />
