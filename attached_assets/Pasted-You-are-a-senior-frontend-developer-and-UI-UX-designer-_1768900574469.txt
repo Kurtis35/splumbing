@@ -1,0 +1,97 @@
+You are a senior frontend developer and UI/UX designer.
+
+PROJECT:
+Build a FRONTEND-ONLY plumbing business website for:
+Somerset Plumbing
+
+⚠️ IMPORTANT:
+- NO backend
+- NO database
+- NO authentication
+- NO CMS
+- Static website only
+- Focus on speed, design, and conversions
+
+TECH STACK:
+- React
+- Typescript
+- Tailwind CSS
+- shadcn/ui components
+- lucide-react icons
+- class-variance-authority
+- @radix-ui/react-slot
+
+If the project does not already support shadcn, Tailwind, or Typescript:
+1. Initialize shadcn via CLI
+2. Install Tailwind CSS
+3. Ensure Typescript is enabled
+4. Explain briefly why `/components/ui` is required for scalable UI components
+
+FOLDER STRUCTURE:
+- /components/ui (REQUIRED)
+- /lib/utils
+- /src or /app
+
+--------------------------------------------------
+HERO SECTION (CORE FOCUS)
+--------------------------------------------------
+Create a hero component inspired by the provided Hero example but rewritten and redesigned for a PLUMBING COMPANY.
+
+Hero layout:
+- Two-column layout
+- Left: Text + CTAs
+- Right: Plumbing image from Unsplash (must exist)
+
+Hero content:
+Badge:
+"24/7 Emergency Plumbing"
+
+Headline:
+"Reliable Plumbing Services in Somerset West"
+
+Subheading:
+"From burst pipes to blocked drains, Somerset Plumbing delivers fast, professional, and affordable solutions you can trust."
+
+Buttons:
+Primary (solid):
+"Call Now" + PhoneCall icon
+
+Secondary (outline):
+"Get a Free Quote" + MoveRight icon
+
+Use shadcn Button and Badge components.
+
+--------------------------------------------------
+DESIGN STYLE
+--------------------------------------------------
+- Blue and white color palette (trust & water)
+- Clean, modern, professional
+- Rounded cards
+- Strong typography
+- High contrast CTAs
+- Mobile-first and fully responsive
+
+--------------------------------------------------
+IMAGE RULES
+--------------------------------------------------
+Use REAL Unsplash images that are guaranteed to exist.
+Suggested searches:
+- "plumber working"
+- "emergency plumber"
+- "plumbing tools"
+
+--------------------------------------------------
+SECTIONS TO INCLUDE
+--------------------------------------------------
+1. Hero Section
+2. Services Section (grid with icons)
+   - Emergency Plumbing
+   - Leak Detection & Repairs
+   - Blocked Drains
+   - Geyser Installation & Repairs
+3. Why Choose Somerset Plumbing
+   - Fast Response Times
+   - Experienced & Reliable
+   - Transparent Pricing
+4. Call-To-Action Banner
+   - “Need a plumber now? We’re ready

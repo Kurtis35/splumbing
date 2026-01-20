@@ -1,190 +1,206 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Phone, Star, ShieldCheck, Clock, Award } from "lucide-react";
-import { Link } from "wouter";
+import { PhoneCall, MoveRight, Wrench, Droplets, ShieldCheck, Zap, Thermometer, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-import { ServiceCard } from "@/components/ServiceCard";
-import { ContactForm } from "@/components/ContactForm";
-import { useServices } from "@/hooks/use-services";
-import { useTestimonials } from "@/hooks/use-testimonials";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
-  const { data: services, isLoading: isLoadingServices } = useServices();
-  const { data: testimonials, isLoading: isLoadingTestimonials } = useTestimonials();
-
   return (
-    <div className="min-h-screen bg-background font-body text-foreground selection:bg-secondary/30">
-      <Navigation />
-
-      {/* Phenomenal Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center overflow-hidden">
-        {/* Cinematic Background */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80"
-            alt="Luxury Interior" 
-            className="w-full h-full object-cover scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/70 to-primary/95" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
-        </div>
-
-        <div className="container relative z-10 px-6 lg:px-12 mx-auto">
-          <div className="max-w-4xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center space-x-3 glass-dark px-5 py-2 rounded-full mb-8"
-            >
-              <span className="flex h-2 w-2 rounded-full bg-secondary animate-pulse" />
-              <span className="text-xs uppercase tracking-widest font-semibold text-white/90">Master Plumbers in Somerset West</span>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-6xl md:text-8xl font-display font-black text-white leading-[0.9] mb-8"
-            >
-              Excellence In <br />
-              <span className="text-gradient">Every Detail.</span>
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed mb-12 font-light tracking-wide"
-            >
-              Providing world-class plumbing solutions with a commitment to precision, integrity, and unparalleled craftsmanship for over two decades.
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-6"
-            >
-              <Link href="/contact">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-primary font-bold text-base px-10 py-7 h-auto rounded-none tracking-widest uppercase transition-all hover:translate-y-[-2px] shadow-2xl shadow-secondary/20">
-                  Request a Consultation
-                </Button>
-              </Link>
-              <Link href="/services">
-                <Button size="lg" variant="outline" className="glass text-white border-white/20 font-bold text-base px-10 py-7 h-auto rounded-none tracking-widest uppercase transition-all hover:bg-white/10">
-                  Explore Services
-                </Button>
-              </Link>
-            </motion.div>
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="bg-primary p-2 rounded-lg">
+              <Droplets className="text-white w-6 h-6" />
+            </div>
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight">Somerset Plumbing</span>
+          </div>
+          <div className="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+            <a href="#services" className="hover:text-primary transition-colors">Services</a>
+            <a href="#why-us" className="hover:text-primary transition-colors">Why Choose Us</a>
+            <Button variant="default" className="rounded-full px-6">
+              <PhoneCall className="mr-2 h-4 w-4" />
+              021 123 4567
+            </Button>
           </div>
         </div>
-        
-        {/* Scroll Indicator */}
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 hidden md:block"
-        >
-          <div className="w-[1px] h-20 bg-gradient-to-b from-secondary to-transparent" />
-        </motion.div>
-      </section>
+      </nav>
 
-      {/* Stats / Trust Banner */}
-      <section className="relative z-20 -mt-16 container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-premium">
-          {[
-            { icon: ShieldCheck, label: "Certified Excellence", desc: "Fully licensed & insured" },
-            { icon: Clock, label: "24/7 Response", desc: "Always here when you need us" },
-            { icon: Award, label: "20+ Years", desc: "Legacy of trusted service" }
-          ].map((stat, i) => (
-            <div key={i} className="bg-white p-10 flex items-center space-x-6 border-r border-slate-50 last:border-0 first:rounded-l-none last:rounded-r-none">
-              <div className="p-4 bg-primary/5 rounded-full">
-                <stat.icon className="w-8 h-8 text-secondary" />
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
+            >
+              <Badge variant="secondary" className="bg-blue-50 text-primary border-blue-100 px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider">
+                24/7 Emergency Plumbing
+              </Badge>
+              <h1 className="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1]">
+                Reliable Plumbing Services in <span className="text-primary">Somerset West</span>
+              </h1>
+              <p className="text-xl text-slate-600 leading-relaxed max-w-xl font-medium">
+                From burst pipes to blocked drains, Somerset Plumbing delivers fast, professional, and affordable solutions you can trust.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button size="lg" className="h-16 px-8 rounded-2xl text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:scale-105 active:scale-95">
+                  <PhoneCall className="mr-2 h-5 w-5" />
+                  Call Now
+                </Button>
+                <Button variant="outline" size="lg" className="h-16 px-8 rounded-2xl text-lg font-bold border-2 transition-all hover:bg-slate-50">
+                  Get a Free Quote
+                  <MoveRight className="ml-2 h-5 w-5" />
+                </Button>
               </div>
-              <div>
-                <h3 className="font-display font-bold text-xl text-primary">{stat.label}</h3>
-                <p className="text-slate-500 text-sm uppercase tracking-wider">{stat.desc}</p>
+              <div className="flex items-center space-x-8 pt-8 border-t border-slate-100">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden shadow-sm">
+                      <img src={`https://i.pravatar.cc/150?u=${i}`} alt="Client" />
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="flex text-yellow-400 mb-1">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <Zap key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-sm font-bold text-slate-900">500+ Happy Customers</p>
+                </div>
               </div>
-            </div>
-          ))}
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="absolute -inset-4 bg-primary/10 rounded-3xl blur-3xl -z-10" />
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
+                <img 
+                  src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=1200"
+                  alt="Professional Plumber at Work"
+                  className="w-full h-[600px] object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-3xl shadow-2xl border border-slate-100 hidden lg:block">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-green-500 p-3 rounded-2xl">
+                    <Clock className="text-white w-8 h-8" />
+                  </div>
+                  <div>
+                    <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">Response Time</p>
+                    <p className="text-2xl font-black text-slate-900">Under 60 Mins</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-32 bg-background relative overflow-hidden">
+      <section id="services" className="py-24 bg-slate-50">
+        <div className="container mx-auto px-6 text-center">
+          <Badge className="mb-6 rounded-full px-4 py-1.5 bg-white text-primary border-slate-200 shadow-sm">Our Expertise</Badge>
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">World-Class Plumbing Services</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-16 font-medium">
+            Whatever your plumbing needs, our team of experts is ready to provide top-tier solutions.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+            {[
+              { icon: Zap, title: "Emergency Plumbing", desc: "Fast 24/7 response for all urgent plumbing issues." },
+              { icon: Droplets, title: "Leak Detection", desc: "Pinpoint accuracy in finding and repairing hidden leaks." },
+              { icon: Wrench, title: "Blocked Drains", desc: "Professional clearing of even the toughest drain blockages." },
+              { icon: Thermometer, title: "Geyser Services", desc: "Expert installation and repairs for all geyser types." }
+            ].map((service, i) => (
+              <Card key={i} className="rounded-3xl border-0 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
+                <CardContent className="p-10">
+                  <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-primary transition-colors">
+                    <service.icon className="text-primary w-8 h-8 group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-xl font-extrabold text-slate-900 mb-4">{service.title}</h3>
+                  <p className="text-slate-600 leading-relaxed font-medium">{service.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section id="why-us" className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="max-w-2xl">
-              <h4 className="text-secondary font-bold tracking-[0.3em] uppercase text-sm mb-4">Our Expertise</h4>
-              <h2 className="text-5xl md:text-6xl font-display font-black leading-tight">Master Craftsmanship <br />Met With Modern Technology</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="order-2 lg:order-1 relative">
+              <div className="absolute inset-0 bg-primary/5 rounded-[3rem] -rotate-3" />
+              <img 
+                src="https://images.unsplash.com/photo-1581244276891-99af96823055?auto=format&fit=crop&q=80&w=1000"
+                alt="Reliable Plumbing Team"
+                className="relative rounded-[2.5rem] shadow-xl w-full h-[500px] object-cover rotate-2 transition-transform hover:rotate-0 duration-700"
+              />
             </div>
-            <Link href="/services">
-              <Button variant="link" className="text-secondary font-bold p-0 flex items-center group text-lg">
-                View All Services <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
-              </Button>
-            </Link>
-          </div>
-
-          {isLoadingServices ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {[1, 2, 3].map((n) => (
-                <div key={n} className="h-[400px] bg-slate-100 rounded-none animate-pulse" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {services?.map((service, idx) => (
-                <ServiceCard key={service.id} service={service} index={idx} />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Testimonials - Refined */}
-      <section className="py-32 bg-primary text-white relative">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" />
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 italic text-gradient">Trusted By The Best.</h2>
-            <p className="text-white/60 text-lg font-light tracking-wide">Our reputation is built on the satisfaction of our distinguished clients across Somerset West.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {isLoadingTestimonials ? (
-              [1, 2, 3].map((n) => <div key={n} className="h-64 glass-dark rounded-none animate-pulse" />)
-            ) : (
-              testimonials?.map((t, idx) => (
-                <motion.div 
-                  key={t.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  className="glass-dark p-12 relative group hover:bg-white/5 transition-colors"
-                >
-                  <div className="flex text-secondary mb-8">
-                    {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-                  </div>
-                  <p className="text-xl text-white/80 mb-10 font-light italic leading-relaxed">"{t.content}"</p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-secondary flex items-center justify-center font-bold text-primary">
-                      {t.name.charAt(0)}
+            <div className="order-1 lg:order-2 space-y-8">
+              <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">Why Choose <br /><span className="text-primary">Somerset Plumbing?</span></h2>
+              <div className="space-y-6">
+                {[
+                  { icon: Clock, title: "Fast Response Times", desc: "We understand emergencies don't wait. We arrive quickly to minimize damage." },
+                  { icon: ShieldCheck, title: "Experienced & Reliable", desc: "Our certified master plumbers bring years of expertise to every single job." },
+                  { icon: Droplets, title: "Transparent Pricing", desc: "No hidden costs. We provide clear, upfront pricing before any work begins." }
+                ].map((reason, i) => (
+                  <div key={i} className="flex gap-6 p-6 rounded-3xl hover:bg-slate-50 transition-colors">
+                    <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/30">
+                      <reason.icon className="text-white w-6 h-6" />
                     </div>
-                    <div className="ml-4">
-                      <p className="font-display font-bold text-white tracking-wide">{t.name}</p>
-                      <p className="text-xs uppercase tracking-widest text-secondary font-bold">{t.role}</p>
+                    <div>
+                      <h4 className="text-xl font-extrabold text-slate-900 mb-2">{reason.title}</h4>
+                      <p className="text-slate-600 font-medium leading-relaxed">{reason.desc}</p>
                     </div>
                   </div>
-                </motion.div>
-              ))
-            )}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <Footer />
+      {/* CTA Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="bg-primary rounded-[3rem] p-12 lg:p-24 text-center relative overflow-hidden shadow-2xl shadow-primary/40">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl -ml-32 -mb-32" />
+            <div className="relative z-10 space-y-8">
+              <h2 className="text-4xl lg:text-6xl font-extrabold text-white leading-tight">Need a plumber now? <br />We’re ready when you are.</h2>
+              <p className="text-xl text-white/80 max-w-2xl mx-auto font-medium">
+                Our team is standing by to help with any plumbing issue, big or small. Call us now for an immediate response.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+                <Button size="lg" className="h-20 px-12 rounded-2xl bg-white text-primary hover:bg-slate-50 text-2xl font-black transition-all hover:scale-105 active:scale-95">
+                  <PhoneCall className="mr-3 h-8 w-8" />
+                  021 123 4567
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-slate-100 bg-slate-50">
+        <div className="container mx-auto px-6 text-center">
+          <div className="flex items-center justify-center space-x-2 mb-6">
+            <Droplets className="text-primary w-6 h-6" />
+            <span className="text-xl font-extrabold text-slate-900 tracking-tight">Somerset Plumbing</span>
+          </div>
+          <p className="text-slate-500 font-medium">© 2024 Somerset Plumbing. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 }
