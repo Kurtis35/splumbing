@@ -1,0 +1,36 @@
+Diagnosis
+
+Relevant error lines: line 57–60 show the build ran "npm run build" which runs "vite build", and line 60 is the immediate error: "sh: 1: vite: not found". The failing exit is summarized at line 66.
+Error type and cause: The build script calls the vite CLI but the vite binary is not present in the build environment (node_modules/.bin). This usually means vite is not installed (missing from package.json or lockfile not committed), or it is only a devDependency that was not installed during the build.
+Solution
+
+Verify vite is declared and package files are committed
+
+Check client/package.json for vite in dependencies or devDependencies: https://github.com/Kurtis35/splumbing/blob/main/client/package.json
+Ensure package.json and your lockfile (package-lock.json / yarn.lock / pnpm-lock.yaml) are committed to the repository.
+If vite is missing, add it and commit
+
+From the client folder run locally:
+cd client
+npm install --save-dev vite@latest
+# or, if you want it as a runtime dependency:
+# npm install --save vite@latest
+Commit package.json and package-lock.json and push.
+If vite is already in devDependencies but still not found
+Ensure Netlify installs devDependencies (remove any NPM_FLAGS environment variable that adds --production), or move vite to dependencies:
+# to move to runtime dependencies if you prefer
+npm install --save vite@latest
+Make sure the lockfile is committed so Netlify installs exactly the same deps.
+Re-deploy
+After committing the change, trigger a new Netlify build. The vite binary will be installed into node_modules/.bin and "npm run build" should succeed.
+Optional alternatives
+
+If you prefer not to add vite as a dependency, you can temporarily change the build command in netlify.toml to:
+[build]
+  command = "npx vite build"
+But the recommended approach is to add vite to package.json and commit lockfile so builds are deterministic.
+
+Files and log lines referenced
+
+client/package.json: https://github.com/Kurtis35/splumbing/blob/main/client/package.json
+Error lines in the build log: line 57–60, line 66
