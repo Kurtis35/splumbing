@@ -1,5 +1,5 @@
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Navigation } from "../components/Navigation";
+import { Footer } from "../components/Footer";
 import { CheckCircle2 } from "lucide-react";
 
 export default function About() {

@@ -1,8 +1,8 @@
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-import { ServiceCard } from "@/components/ServiceCard";
-import { useServices } from "@/hooks/use-services";
-import { Button } from "@/components/ui/button";
+import { Navigation } from "../components/Navigation";
+import { Footer } from "../components/Footer";
+import { ServiceCard } from "../components/ServiceCard";
+import { useServices } from "../hooks/use-services";
+import { Button } from "../components/ui/button";
 import { Link } from "wouter";
 
 export default function Services() {
